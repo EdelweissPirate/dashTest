@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const path = require("path");
+const fs = require('fs');
 
 const protect = require('./middleware/authMiddleware')
 
@@ -13,7 +14,21 @@ const getVideo = (req, res) => {
     const urlParams = new URLSearchParams(params);
     const videoName = urlParams.get('videoName')
 
-    res.sendFile(__dirname + `/public/${videoName}/output.mpd`);
+    const filename = __dirname + `/public/${videoName}/output.mpd`;
+
+    const readStream = fs.createReadStream(filename);
+
+    readStream.on('open', function () {
+        // This just pipes the read stream to the response object (which goes to the client)
+        readStream.pipe(res); // <====== here
+    });
+
+    // This catches any errors that happen while creating the readable stream (usually invalid names)
+    readStream.on('error', function(err) {
+        res.end(err);
+    });
+
+    // res.sendFile(__dirname + `/public/${videoName}/output.mpd`);
 }
 
 app.get("/getVideo", protect, getVideo);
