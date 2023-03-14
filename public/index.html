@@ -65,9 +65,12 @@
 			<script>
 				const videoElement = document.getElementById("vid1");
 
-				await fetch("/getVideo?videoName=ARP-L_LESSON_2_IMPLEMENTATION_PART_1")
+				fetch("/getVideo?videoName=ARP-L_LESSON_2_IMPLEMENTATION_PART_1")
 					.then(response => 
-						videoElement.src = response.status === 200 ? response.url : ""
+						{
+							console.log(response)
+							videoElement.src = response.status === 200 ? response.url : ""
+						}
 					)
 			</script>
 			<!-- END NEW -->
