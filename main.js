@@ -21,7 +21,7 @@ const getVideo = (req, res) => {
     const urlParams = new URLSearchParams(params);
     const videoName = urlParams.get('videoName')
 
-    const filename = __dirname + `/public/testVid.mp4` //${videoName}/output.mpd`;
+    const filename = __dirname + `/public/${videoName}/output.mpd`;
     // end config
 
     // 3rd attempt
