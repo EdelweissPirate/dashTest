@@ -13,7 +13,7 @@ const getVideo = (req, res) => {
     const videoName = urlParams.get('videoName')
 
     const filename = __dirname + `/../public/${videoName}/output.mpd`;
-    
+    // console.log(filename)
     const videoSize = fs.statSync(filename).size;
     const CHUNK_SIZE = 10 ** 6;
     const start = Number(range.replace(/\D/g, ""));
