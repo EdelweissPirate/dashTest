@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler')
 const protect = asyncHandler(async (req, res, next) => {
     const referer = req.headers.referer;
         
-    if(!referer || !referer.includes("localhost")){//localhost
+    if(!referer || !referer.includes("dash-test-rosy")){//localhost
         res.sendStatus(403);
         throw new Error('Not authorised.')
     } else {

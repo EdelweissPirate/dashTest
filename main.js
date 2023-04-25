@@ -4,7 +4,6 @@ const path = require("path");
 
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.static(path.join(__dirname, "/public/ARP-L_LESSON_2_IMPLEMENTATION_PART_1")));
-app.use(express.static(path.join(__dirname, "/public/Lost_Continent_1951")));
 
 const protect = require('./middleware/authMiddleware')
 const getVideo = require('./controllers/videoController')
